@@ -5,22 +5,22 @@ delete from Taco_Order;
 
 delete from Ingredient;
 insert into Ingredient (id, name, type) 
-                values ('FLTO', 'Flour Tortilla', 'WRAP');
+                values ('SUBW', 'Subwoofers', 'Audio');
 insert into Ingredient (id, name, type) 
-                values ('COTO', 'Corn Tortilla', 'WRAP');
+                values ('AMPL', 'Amplifiers', 'Audio');
 insert into Ingredient (id, name, type) 
-                values ('GRBF', 'Ground Beef', 'PROTEIN');
+                values ('SEHA', 'Seat harnesses', 'Interior');
 insert into Ingredient (id, name, type) 
-                values ('CARN', 'Carnitas', 'PROTEIN');
+                values ('FIEX', 'Fire extinguishers', 'Interior');
 insert into Ingredient (id, name, type) 
-                values ('TMTO', 'Diced Tomatoes', 'VEGGIES');
+                values ('SPPL', 'Spark plugs', 'Engine');
 insert into Ingredient (id, name, type) 
-                values ('LETC', 'Lettuce', 'VEGGIES');
+                values ('MAFL', 'Mass air flow', 'Engine');
 insert into Ingredient (id, name, type) 
-                values ('CHED', 'Cheddar', 'CHEESE');
+                values ('SPRI', 'Springs', 'Suspension');
 insert into Ingredient (id, name, type) 
-                values ('JACK', 'Monterrey Jack', 'CHEESE');
+                values ('SHAB', 'Shock absorbers', 'Suspension');
 insert into Ingredient (id, name, type) 
-                values ('SLSA', 'Salsa', 'SAUCE');
+                values ('RORE', 'Rolling resistance', 'Tires');
 insert into Ingredient (id, name, type) 
-                values ('SRCR', 'Sour Cream', 'SAUCE');
+                values ('HADL', 'Handling', 'Tires');
