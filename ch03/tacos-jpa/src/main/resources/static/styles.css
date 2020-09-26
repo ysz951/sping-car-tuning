@@ -7,12 +7,12 @@ div.ingredient-group:nth-child(odd) {
     max-width: 400px;
 }
 
-div.ingredient-group:nth-child(even) {
+div.gear-group:nth-child(even) {
     float: left;
 	padding-right: 0;
 }
 
-div.ingredient-group {
+div.gear-group {
 	width: 50%;
 }
 

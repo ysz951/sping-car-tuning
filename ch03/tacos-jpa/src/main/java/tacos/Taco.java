@@ -28,9 +28,9 @@ public class Taco {
 
   private Date createdAt;
 
-  @ManyToMany(targetEntity=Ingredient.class)
+  @ManyToMany(targetEntity= Gear.class)
   @Size(min=1, message="You must choose at least 1 ingredient")
-  private List<Ingredient> ingredients = new ArrayList<>();
+  private List<Gear> gears = new ArrayList<>();
   
   @PrePersist
   void createdAt() {

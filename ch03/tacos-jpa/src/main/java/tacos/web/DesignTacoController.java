@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import tacos.Ingredient;
-import tacos.Ingredient.Type;
+import tacos.Gear;
+import tacos.Gear.Type;
 import tacos.Order;
 import tacos.Taco;
-import tacos.data.IngredientRepository;
+import tacos.data.GearRepository;
 import tacos.data.TacoRepository;
 
 //tag::injectingDesignRepository[]
@@ -32,7 +32,7 @@ import tacos.data.TacoRepository;
 //tag::injectingIngredientRepository[]
 public class DesignTacoController {
 
-  private final IngredientRepository ingredientRepo;
+  private final GearRepository ingredientRepo;
 
   //end::injectingIngredientRepository[]
   private TacoRepository tacoRepo;
@@ -40,7 +40,7 @@ public class DesignTacoController {
   //end::injectingDesignRepository[]
   /*
   //tag::injectingIngredientRepository[]
-  public DesignTacoController(IngredientRepository ingredientRepo) {
+  public DesignTacoController(GearRepository ingredientRepo) {
     this.ingredientRepo = ingredientRepo;
   }
   //end::injectingIngredientRepository[]
@@ -49,7 +49,7 @@ public class DesignTacoController {
 
   @Autowired
   public DesignTacoController(
-        IngredientRepository ingredientRepo,
+        GearRepository ingredientRepo,
         TacoRepository tacoRepo) {
     this.ingredientRepo = ingredientRepo;
     this.tacoRepo = tacoRepo;
@@ -71,13 +71,13 @@ public class DesignTacoController {
 
   @GetMapping
   public String showDesignForm(Model model) {
-    List<Ingredient> ingredients = new ArrayList<>();
-    ingredientRepo.findAll().forEach(i -> ingredients.add(i));
+    List<Gear> gears = new ArrayList<>();
+    ingredientRepo.findAll().forEach(i -> gears.add(i));
 
-    Type[] types = Ingredient.Type.values();
+    Type[] types = Gear.Type.values();
     for (Type type : types) {
       model.addAttribute(type.toString().toLowerCase(),
-          filterByType(ingredients, type));
+          filterByType(gears, type));
     }
 
     return "design";
@@ -102,9 +102,9 @@ public class DesignTacoController {
 
 //end::injectingDesignRepository[]
 
-  private List<Ingredient> filterByType(
-      List<Ingredient> ingredients, Type type) {
-    return ingredients
+  private List<Gear> filterByType(
+          List<Gear> gears, Type type) {
+    return gears
               .stream()
               .filter(x -> x.getType().equals(type))
               .collect(Collectors.toList());
