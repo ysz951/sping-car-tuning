@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Taco Cloud</title>
+    <title>Car Tuning</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
   </head>
-  
+
   <body>
-    <h1>Welcome to...</h1>
-    <img th:src="@{/images/TacoCloud.png}"/>
-    
-    <a th:href="@{/design}" id="design">Design a taco</a>
+  <h1>Welcome to...Shengyang Zhou Car Tuning Demo</h1>
+  <img class="main-img" th:src="@{/images/CarTuning.jpg}"/>
+
+  <a th:href="@{/design}" id="design">Design a taco</a>
   </body>
 </html>

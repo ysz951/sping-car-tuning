@@ -50,32 +50,32 @@ public class DesignTacoControllerTest {
   @Before
   public void setup() {
     ingredients = Arrays.asList(
-      new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-      new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
-      new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-      new Ingredient("CARN", "Carnitas", Type.PROTEIN),
-      new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
-      new Ingredient("LETC", "Lettuce", Type.VEGGIES),
-      new Ingredient("CHED", "Cheddar", Type.CHEESE),
-      new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
-      new Ingredient("SLSA", "Salsa", Type.SAUCE),
-      new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
+            new Ingredient("SUBW", "Subwoofers", Type.Audio),
+            new Ingredient("AMPL", "Amplifiers", Type.Audio),
+            new Ingredient("SEHA", "Seat harnesses", Type.Interior),
+            new Ingredient("FIEX", "Fire extinguishers", Type.Interior),
+            new Ingredient("SPPL", "Spark plugs", Type.Engine),
+            new Ingredient("MAFL", "Mass air flow", Type.Engine),
+            new Ingredient("SPRI", "Springs", Type.Suspension),
+            new Ingredient("SHAB", "Shock absorbers", Type.Suspension),
+            new Ingredient("RORE", "Rolling resistance", Type.Tires),
+            new Ingredient("HADL", "Handling", Type.Tires)
     );
 
     when(ingredientRepository.findAll())
         .thenReturn(ingredients);
 
-    when(ingredientRepository.findById("FLTO")).thenReturn(Optional.of(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP)));
-    when(ingredientRepository.findById("GRBF")).thenReturn(Optional.of(new Ingredient("GRBF", "Ground Beef", Type.PROTEIN)));
-    when(ingredientRepository.findById("CHED")).thenReturn(Optional.of(new Ingredient("CHED", "Cheddar", Type.CHEESE)));
+    when(ingredientRepository.findById("SUBW")).thenReturn(Optional.of(new Ingredient("SUBW", "Subwoofers", Type.Audio)));
+    when(ingredientRepository.findById("SPPL")).thenReturn(Optional.of(new Ingredient("SPPL", "Spark plugs", Type.Engine)));
+    when(ingredientRepository.findById("RORE")).thenReturn(Optional.of(new Ingredient("RORE", "Rolling resistance", Type.Tires)));
 
     design = new Taco();
-    design.setName("Test Taco");
+    design.setName("Test Car");
 
     design.setIngredients(Arrays.asList(
-        new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-        new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-        new Ingredient("CHED", "Cheddar", Type.CHEESE)
+            new Ingredient("SUBW", "Subwoofers", Type.Audio),
+            new Ingredient("SPPL", "Spark plugs", Type.Engine),
+            new Ingredient("RORE", "Rolling resistance", Type.Tires)
   ));
 
   }
@@ -83,13 +83,13 @@ public class DesignTacoControllerTest {
   @Test
   public void testShowDesignForm() throws Exception {
     mockMvc.perform(get("/design"))
-        .andExpect(status().isOk())
-        .andExpect(view().name("design"))
-        .andExpect(model().attribute("wrap", ingredients.subList(0, 2)))
-        .andExpect(model().attribute("protein", ingredients.subList(2, 4)))
-        .andExpect(model().attribute("veggies", ingredients.subList(4, 6)))
-        .andExpect(model().attribute("cheese", ingredients.subList(6, 8)))
-        .andExpect(model().attribute("sauce", ingredients.subList(8, 10)));
+            .andExpect(status().isOk())
+            .andExpect(view().name("design"))
+            .andExpect(model().attribute("audio", ingredients.subList(0, 2)))
+            .andExpect(model().attribute("interior", ingredients.subList(2, 4)))
+            .andExpect(model().attribute("engine", ingredients.subList(4, 6)))
+            .andExpect(model().attribute("suspension", ingredients.subList(6, 8)))
+            .andExpect(model().attribute("tires", ingredients.subList(8, 10)));
   }
 
   @Test
@@ -98,7 +98,7 @@ public class DesignTacoControllerTest {
         .thenReturn(design);
 
     mockMvc.perform(post("/design")
-        .content("name=Test+Taco&ingredients=FLTO,GRBF,CHED")
+        .content("name=Test+Car&ingredients=SUBW,SPPL,RORE")
         .contentType(MediaType.APPLICATION_FORM_URLENCODED))
         .andExpect(status().is3xxRedirection())
         .andExpect(header().stringValues("Location", "/orders/current"));

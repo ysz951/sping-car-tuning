@@ -69,13 +69,14 @@ public class DesignTacoControllerTest {
     when(ingredientRepository.findById("RORE")).thenReturn(new Ingredient("RORE", "Rolling resistance", Type.Tires));
 
     design = new Taco();
-    design.setName("Test Taco");
+    design.setName("Test Car");
 
     design.setIngredients(
         Arrays.asList(
             new Ingredient("SUBW", "Subwoofers", Type.Audio),
             new Ingredient("SPPL", "Spark plugs", Type.Engine),
-            new Ingredient("RORE", "Rolling resistance", Type.Tires)));
+            new Ingredient("RORE", "Rolling resistance", Type.Tires)
+        ));
 
   }
 
