@@ -9,10 +9,10 @@ import tacos.Gear.Type;
 import tacos.data.GearRepository;
 
 @SpringBootApplication
-public class TacoCloudApplication {
+public class CarCloudApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(TacoCloudApplication.class, args);
+    SpringApplication.run(CarCloudApplication.class, args);
   }
 
   @Bean

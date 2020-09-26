@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import tacos.Gear;
 import tacos.Gear.Type;
 import tacos.Order;
-import tacos.Taco;
+import tacos.Car;
 import tacos.data.GearRepository;
-import tacos.data.TacoRepository;
+import tacos.data.CarRepository;
 
 //tag::injectingDesignRepository[]
 //tag::injectingIngredientRepository[]
@@ -30,17 +30,17 @@ import tacos.data.TacoRepository;
 //end::injectingIngredientRepository[]
 @SessionAttributes("order")
 //tag::injectingIngredientRepository[]
-public class DesignTacoController {
+public class DesignCarController {
 
   private final GearRepository ingredientRepo;
 
   //end::injectingIngredientRepository[]
-  private TacoRepository tacoRepo;
+  private CarRepository tacoRepo;
 
   //end::injectingDesignRepository[]
   /*
   //tag::injectingIngredientRepository[]
-  public DesignTacoController(GearRepository ingredientRepo) {
+  public DesignCarController(GearRepository ingredientRepo) {
     this.ingredientRepo = ingredientRepo;
   }
   //end::injectingIngredientRepository[]
@@ -48,9 +48,9 @@ public class DesignTacoController {
   //tag::injectingDesignRepository[]
 
   @Autowired
-  public DesignTacoController(
+  public DesignCarController(
         GearRepository ingredientRepo,
-        TacoRepository tacoRepo) {
+        CarRepository tacoRepo) {
     this.ingredientRepo = ingredientRepo;
     this.tacoRepo = tacoRepo;
   }
@@ -61,8 +61,8 @@ public class DesignTacoController {
   }
 
   @ModelAttribute(name = "design")
-  public Taco design() {
-    return new Taco();
+  public Car design() {
+    return new Car();
   }
 
   //end::injectingDesignRepository[]
@@ -87,14 +87,14 @@ public class DesignTacoController {
 //tag::injectingDesignRepository[]
   @PostMapping
   public String processDesign(
-      @Valid Taco taco, Errors errors,
-      @ModelAttribute Order order) {
+          @Valid Car car, Errors errors,
+          @ModelAttribute Order order) {
 
     if (errors.hasErrors()) {
       return "design";
     }
 
-    Taco saved = tacoRepo.save(taco);
+    Car saved = tacoRepo.save(car);
     order.addDesign(saved);
 
     return "redirect:/orders/current";

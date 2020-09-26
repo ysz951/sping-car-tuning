@@ -24,25 +24,25 @@ import org.springframework.test.web.servlet.MockMvc;
 import tacos.Gear.Type;
 import tacos.data.GearRepository;
 import tacos.data.OrderRepository;
-import tacos.data.TacoRepository;
-import tacos.web.DesignTacoController;
+import tacos.data.CarRepository;
+import tacos.web.DesignCarController;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DesignTacoController.class)
-public class DesignTacoControllerTest {
+@WebMvcTest(DesignCarController.class)
+public class DesignCarControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
 
   private List<Gear> gears;
 
-  private Taco design;
+  private Car design;
 
   @MockBean
   private GearRepository gearRepository;
 
   @MockBean
-  private TacoRepository designRepository;
+  private CarRepository designRepository;
 
   @MockBean
   private OrderRepository orderRepository;
@@ -69,7 +69,7 @@ public class DesignTacoControllerTest {
     when(gearRepository.findById("SPPL")).thenReturn(Optional.of(new Gear("SPPL", "Spark plugs", Type.Engine)));
     when(gearRepository.findById("RORE")).thenReturn(Optional.of(new Gear("RORE", "Rolling resistance", Type.Tires)));
 
-    design = new Taco();
+    design = new Car();
     design.setName("Test Car");
 
     design.setGears(Arrays.asList(

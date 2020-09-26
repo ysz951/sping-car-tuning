@@ -67,11 +67,11 @@ public class Order implements Serializable {
    */
   
 //tag::allButDetailProperties[]
-  @ManyToMany(targetEntity=Taco.class)
-  private List<Taco> tacos = new ArrayList<>();
+  @ManyToMany(targetEntity= Car.class)
+  private List<Car> cars = new ArrayList<>();
   
-  public void addDesign(Taco design) {
-    this.tacos.add(design);
+  public void addDesign(Car design) {
+    this.cars.add(design);
   }
   
   @PrePersist

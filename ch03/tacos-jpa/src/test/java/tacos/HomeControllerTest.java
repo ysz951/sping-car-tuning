@@ -14,7 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import tacos.data.TacoRepository;
+import tacos.data.CarRepository;
 import tacos.data.GearRepository;
 import tacos.data.OrderRepository;
 
@@ -29,7 +29,7 @@ public class HomeControllerTest {
   private GearRepository gearRepository;
 
   @MockBean
-  private TacoRepository designRepository;
+  private CarRepository designRepository;
 
   @MockBean
   private OrderRepository orderRepository;

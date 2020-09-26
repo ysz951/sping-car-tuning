@@ -20,7 +20,6 @@ public class Gear {
   private final Type type;
   
   public static enum Type {
-//    WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
     Audio, Interior, Engine, Suspension, Tires
   }
 
