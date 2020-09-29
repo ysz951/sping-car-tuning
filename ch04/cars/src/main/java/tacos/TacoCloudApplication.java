@@ -5,9 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import tacos.Ingredient.Type;
-import tacos.data.IngredientRepository;
-import tacos.data.UserRepository;
+import tacos.Gear.Type;
+import tacos.data.GearRepository;
 
 @SpringBootApplication
 public class TacoCloudApplication {
@@ -17,20 +16,20 @@ public class TacoCloudApplication {
   }
 
   @Bean
-  public CommandLineRunner dataLoader(IngredientRepository repo) {
+  public CommandLineRunner dataLoader(GearRepository repo) {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
-        repo.save(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
-        repo.save(new Ingredient("COTO", "Corn Tortilla", Type.WRAP));
-        repo.save(new Ingredient("GRBF", "Ground Beef", Type.PROTEIN));
-        repo.save(new Ingredient("CARN", "Carnitas", Type.PROTEIN));
-        repo.save(new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES));
-        repo.save(new Ingredient("LETC", "Lettuce", Type.VEGGIES));
-        repo.save(new Ingredient("CHED", "Cheddar", Type.CHEESE));
-        repo.save(new Ingredient("JACK", "Monterrey Jack", Type.CHEESE));
-        repo.save(new Ingredient("SLSA", "Salsa", Type.SAUCE));
-        repo.save(new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
+        repo.save(new Gear("SUBW", "Subwoofers", Type.Audio));
+        repo.save(new Gear("AMPL", "Amplifiers", Type.Audio));
+        repo.save(new Gear("SEHA", "Seat harnesses", Type.Interior));
+        repo.save(new Gear("FIEX", "Fire extinguishers", Type.Interior));
+        repo.save(new Gear("SPPL", "Spark plugs", Type.Engine));
+        repo.save(new Gear("MAFL", "Mass air flow", Type.Engine));
+        repo.save(new Gear("SPRI", "Springs", Type.Suspension));
+        repo.save(new Gear("SHAB", "Shock absorbers", Type.Suspension));
+        repo.save(new Gear("RORE", "Rolling resistance", Type.Tires));
+        repo.save(new Gear("HADL", "Handling", Type.Tires));
       }
     };
   }

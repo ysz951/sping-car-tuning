@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.extern.slf4j.Slf4j;
-import tacos.Ingredient;
-import tacos.Ingredient.Type;
+import tacos.Gear;
+import tacos.Gear.Type;
 import tacos.Order;
 import tacos.Taco;
 import tacos.User;
-import tacos.data.IngredientRepository;
+import tacos.data.GearRepository;
 import tacos.data.TacoRepository;
 import tacos.data.UserRepository;
 
@@ -33,7 +33,7 @@ import tacos.data.UserRepository;
 @Slf4j
 public class DesignTacoController {
   
-  private final IngredientRepository ingredientRepo;
+  private final GearRepository ingredientRepo;
   
   private TacoRepository tacoRepo;
 
@@ -41,7 +41,7 @@ public class DesignTacoController {
 
   @Autowired
   public DesignTacoController(
-        IngredientRepository ingredientRepo, 
+        GearRepository ingredientRepo,
         TacoRepository tacoRepo,
         UserRepository userRepo) {
     this.ingredientRepo = ingredientRepo;
@@ -62,13 +62,13 @@ public class DesignTacoController {
   @GetMapping
   public String showDesignForm(Model model, Principal principal) {
     log.info("   --- Designing taco");
-    List<Ingredient> ingredients = new ArrayList<>();
-    ingredientRepo.findAll().forEach(i -> ingredients.add(i));
+    List<Gear> gears = new ArrayList<>();
+    ingredientRepo.findAll().forEach(i -> gears.add(i));
     
-    Type[] types = Ingredient.Type.values();
+    Type[] types = Gear.Type.values();
     for (Type type : types) {
       model.addAttribute(type.toString().toLowerCase(), 
-          filterByType(ingredients, type));      
+          filterByType(gears, type));
     }
     
     String username = principal.getName();
@@ -95,9 +95,9 @@ public class DesignTacoController {
     return "redirect:/orders/current";
   }
 
-  private List<Ingredient> filterByType(
-      List<Ingredient> ingredients, Type type) {
-    return ingredients
+  private List<Gear> filterByType(
+          List<Gear> gears, Type type) {
+    return gears
               .stream()
               .filter(x -> x.getType().equals(type))
               .collect(Collectors.toList());

@@ -23,8 +23,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import tacos.Ingredient.Type;
-import tacos.data.IngredientRepository;
+import tacos.Gear.Type;
+import tacos.data.GearRepository;
 import tacos.data.OrderRepository;
 import tacos.data.TacoRepository;
 import tacos.data.UserRepository;
@@ -37,12 +37,12 @@ public class DesignTacoControllerTest {
   @Autowired
   private MockMvc mockMvc;
   
-  private List<Ingredient> ingredients;
+  private List<Gear> gears;
 
   private Taco design;
   
   @MockBean
-  private IngredientRepository ingredientRepository;
+  private GearRepository gearRepository;
 
   @MockBean
   private TacoRepository designRepository;
@@ -55,33 +55,33 @@ public class DesignTacoControllerTest {
 
   @Before
   public void setup() {
-    ingredients = Arrays.asList(
-      new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-      new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
-      new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-      new Ingredient("CARN", "Carnitas", Type.PROTEIN),
-      new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
-      new Ingredient("LETC", "Lettuce", Type.VEGGIES),
-      new Ingredient("CHED", "Cheddar", Type.CHEESE),
-      new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
-      new Ingredient("SLSA", "Salsa", Type.SAUCE),
-      new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
+    gears = Arrays.asList(
+            new Gear("SUBW", "Subwoofers", Type.Audio),
+            new Gear("AMPL", "Amplifiers", Type.Audio),
+            new Gear("SEHA", "Seat harnesses", Type.Interior),
+            new Gear("FIEX", "Fire extinguishers", Type.Interior),
+            new Gear("SPPL", "Spark plugs", Type.Engine),
+            new Gear("MAFL", "Mass air flow", Type.Engine),
+            new Gear("SPRI", "Springs", Type.Suspension),
+            new Gear("SHAB", "Shock absorbers", Type.Suspension),
+            new Gear("RORE", "Rolling resistance", Type.Tires),
+            new Gear("HADL", "Handling", Type.Tires)
     );
     
-    when(ingredientRepository.findAll())
-        .thenReturn(ingredients);
-        
-    when(ingredientRepository.findById("FLTO")).thenReturn(Optional.of(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP)));
-    when(ingredientRepository.findById("GRBF")).thenReturn(Optional.of(new Ingredient("GRBF", "Ground Beef", Type.PROTEIN)));
-    when(ingredientRepository.findById("CHED")).thenReturn(Optional.of(new Ingredient("CHED", "Cheddar", Type.CHEESE)));
-    
+    when(gearRepository.findAll())
+        .thenReturn(gears);
+
+    when(gearRepository.findById("SUBW")).thenReturn(Optional.of(new Gear("SUBW", "Subwoofers", Type.Audio)));
+    when(gearRepository.findById("SPPL")).thenReturn(Optional.of(new Gear("SPPL", "Spark plugs", Type.Engine)));
+    when(gearRepository.findById("RORE")).thenReturn(Optional.of(new Gear("RORE", "Rolling resistance", Type.Tires)));
+
     design = new Taco();
     design.setName("Test Taco");
 
-    design.setIngredients(Arrays.asList(
-        new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-        new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-        new Ingredient("CHED", "Cheddar", Type.CHEESE)
+    design.setGears(Arrays.asList(
+            new Gear("SUBW", "Subwoofers", Type.Audio),
+            new Gear("SPPL", "Spark plugs", Type.Engine),
+            new Gear("RORE", "Rolling resistance", Type.Tires)
     	));
 
     when(userRepository.findByUsername("testuser"))
@@ -94,11 +94,11 @@ public class DesignTacoControllerTest {
 	mockMvc.perform(get("/design"))
         .andExpect(status().isOk())
         .andExpect(view().name("design"))
-        .andExpect(model().attribute("wrap", ingredients.subList(0, 2)))
-        .andExpect(model().attribute("protein", ingredients.subList(2, 4)))
-        .andExpect(model().attribute("veggies", ingredients.subList(4, 6)))
-        .andExpect(model().attribute("cheese", ingredients.subList(6, 8)))
-        .andExpect(model().attribute("sauce", ingredients.subList(8, 10)));
+            .andExpect(model().attribute("audio", gears.subList(0, 2)))
+            .andExpect(model().attribute("interior", gears.subList(2, 4)))
+            .andExpect(model().attribute("engine", gears.subList(4, 6)))
+            .andExpect(model().attribute("suspension", gears.subList(6, 8)))
+            .andExpect(model().attribute("tires", gears.subList(8, 10)));
   }
 
   @Test
@@ -108,7 +108,7 @@ public class DesignTacoControllerTest {
         .thenReturn(design);
     
     mockMvc.perform(post("/design").with(csrf())
-        .content("name=Test+Taco&ingredients=FLTO,GRBF,CHED")
+        .content("name=Test+Taco&gears=FLTO,GRBF,CHED")
         .contentType(MediaType.APPLICATION_FORM_URLENCODED))
         .andExpect(status().is3xxRedirection())
         .andExpect(header().stringValues("Location", "/orders/current"));

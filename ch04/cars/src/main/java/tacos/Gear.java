@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 @Entity
-public class Ingredient {
+public class Gear {
   
   @Id
   private final String id;
@@ -20,7 +20,7 @@ public class Ingredient {
   private final Type type;
   
   public static enum Type {
-    WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+    Audio, Interior, Engine, Suspension, Tires
   }
 
 }
