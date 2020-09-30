@@ -1,4 +1,4 @@
-package tacos;
+package cars;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -15,10 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import tacos.data.GearRepository;
-import tacos.data.OrderRepository;
-import tacos.data.TacoRepository;
-import tacos.data.UserRepository;
+import cars.data.GearRepository;
+import cars.data.OrderRepository;
+import cars.data.CarRepository;
+import cars.data.UserRepository;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(secure=false)
@@ -35,7 +35,7 @@ public class HomeControllerTest {
   private GearRepository gearRepository;
 
   @MockBean
-  private TacoRepository designRepository;
+  private CarRepository designRepository;
 
   @MockBean
   private OrderRepository orderRepository;
@@ -48,11 +48,11 @@ public class HomeControllerTest {
 
   @Test
   public void testHomePage() throws Exception {
-    mockMvc.perform(get("/abc"))
-      .andExpect(status().isOk())
-      .andExpect(view().name("home"))
-      .andExpect(content().string(
-          containsString("Welcome to...")));  
+    mockMvc.perform(get("/"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("home"))
+            .andExpect(content().string(
+                    containsString("Welcome to...Shengyang Zhou Car Tuning Demo")));
   }
 
 }

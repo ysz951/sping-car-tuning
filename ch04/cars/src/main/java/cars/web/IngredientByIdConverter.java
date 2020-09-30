@@ -1,4 +1,4 @@
-package tacos.web;
+package cars.web;
 
 import java.util.Optional;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import tacos.Gear;
-import tacos.data.GearRepository;
+import cars.Gear;
+import cars.data.GearRepository;
 
 @Component
 public class IngredientByIdConverter implements Converter<String, Gear> {

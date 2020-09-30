@@ -1,8 +1,8 @@
-package tacos.data;
+package cars.data;
 
 import org.springframework.data.repository.CrudRepository;
 
-import tacos.Gear;
+import cars.Gear;
 
 public interface GearRepository
          extends CrudRepository<Gear, String> {

@@ -1,4 +1,4 @@
-package tacos.web;
+package cars.web;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -18,31 +18,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.extern.slf4j.Slf4j;
-import tacos.Gear;
-import tacos.Gear.Type;
-import tacos.Order;
-import tacos.Taco;
-import tacos.User;
-import tacos.data.GearRepository;
-import tacos.data.TacoRepository;
-import tacos.data.UserRepository;
+import cars.Car;
+import cars.Gear;
+import cars.Gear.Type;
+import cars.Order;
+import cars.User;
+import cars.data.GearRepository;
+import cars.data.CarRepository;
+import cars.data.UserRepository;
 
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
 @Slf4j
-public class DesignTacoController {
+public class DesignCarController {
   
   private final GearRepository ingredientRepo;
   
-  private TacoRepository tacoRepo;
+  private CarRepository tacoRepo;
 
   private UserRepository userRepo;
 
   @Autowired
-  public DesignTacoController(
+  public DesignCarController(
         GearRepository ingredientRepo,
-        TacoRepository tacoRepo,
+        CarRepository tacoRepo,
         UserRepository userRepo) {
     this.ingredientRepo = ingredientRepo;
     this.tacoRepo = tacoRepo;
@@ -55,8 +55,8 @@ public class DesignTacoController {
   }
   
   @ModelAttribute(name = "design")
-  public Taco design() {
-    return new Taco();
+  public Car design() {
+    return new Car();
   }
   
   @GetMapping
@@ -80,16 +80,16 @@ public class DesignTacoController {
 
   @PostMapping
   public String processDesign(
-      @Valid Taco taco, Errors errors, 
-      @ModelAttribute Order order) {
+          @Valid Car car, Errors errors,
+          @ModelAttribute Order order) {
 
-    log.info("   --- Saving taco");
+    log.info("   --- Saving car");
 
     if (errors.hasErrors()) {
       return "design";
     }
 
-    Taco saved = tacoRepo.save(taco);
+    Car saved = tacoRepo.save(car);
     order.addDesign(saved);
 
     return "redirect:/orders/current";

@@ -1,4 +1,4 @@
-package tacos;
+package cars;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Taco {
+public class Car {
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)

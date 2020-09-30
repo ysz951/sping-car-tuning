@@ -1,4 +1,4 @@
-package tacos;
+package cars;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,29 +23,29 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import tacos.Gear.Type;
-import tacos.data.GearRepository;
-import tacos.data.OrderRepository;
-import tacos.data.TacoRepository;
-import tacos.data.UserRepository;
-import tacos.web.DesignTacoController;
+import cars.Gear.Type;
+import cars.data.GearRepository;
+import cars.data.OrderRepository;
+import cars.data.CarRepository;
+import cars.data.UserRepository;
+import cars.web.DesignCarController;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DesignTacoController.class)
-public class DesignTacoControllerTest {
+@WebMvcTest(DesignCarController.class)
+public class DesignCarControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
   
   private List<Gear> gears;
 
-  private Taco design;
+  private Car design;
   
   @MockBean
   private GearRepository gearRepository;
 
   @MockBean
-  private TacoRepository designRepository;
+  private CarRepository designRepository;
 
   @MockBean
   private OrderRepository orderRepository;
@@ -75,8 +75,8 @@ public class DesignTacoControllerTest {
     when(gearRepository.findById("SPPL")).thenReturn(Optional.of(new Gear("SPPL", "Spark plugs", Type.Engine)));
     when(gearRepository.findById("RORE")).thenReturn(Optional.of(new Gear("RORE", "Rolling resistance", Type.Tires)));
 
-    design = new Taco();
-    design.setName("Test Taco");
+    design = new Car();
+    design.setName("Test Car");
 
     design.setGears(Arrays.asList(
             new Gear("SUBW", "Subwoofers", Type.Audio),
@@ -108,7 +108,7 @@ public class DesignTacoControllerTest {
         .thenReturn(design);
     
     mockMvc.perform(post("/design").with(csrf())
-        .content("name=Test+Taco&gears=FLTO,GRBF,CHED")
+        .content("name=Test+Car&gears=SUBW,SPPL,RORE")
         .contentType(MediaType.APPLICATION_FORM_URLENCODED))
         .andExpect(status().is3xxRedirection())
         .andExpect(header().stringValues("Location", "/orders/current"));

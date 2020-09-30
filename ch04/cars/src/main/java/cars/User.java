@@ -1,4 +1,4 @@
-package tacos;
+package cars;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.persistence.Entity;

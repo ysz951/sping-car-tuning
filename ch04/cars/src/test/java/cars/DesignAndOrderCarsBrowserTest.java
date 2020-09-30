@@ -1,4 +1,4 @@
-package tacos;
+package cars;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class DesignAndOrderTacosBrowserTest {
+public class DesignAndOrderCarsBrowserTest {
 
   private static HtmlUnitDriver browser;
 
@@ -102,7 +102,7 @@ public class DesignAndOrderTacosBrowserTest {
       browser.findElementByCssSelector("input[value='" + ingredient + "']").click();
     }
     browser.findElementByCssSelector("input#name").sendKeys(name);
-    browser.findElementByCssSelector("form#tacoForm").submit();
+    browser.findElementByCssSelector("form#carForm").submit();
   }
 
   private void assertLandedOnLoginPage() {

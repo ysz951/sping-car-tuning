@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Taco Cloud</title>
+    <title>Car Tuning</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
   </head>
   
   <body>
     <h1>Login</h1>
-    <img th:src="@{/images/TacoCloud.png}"/>
+    <img  class="main-img" th:src="@{/images/CarTuning.jpg}"/>
     
     <div th:if="${error}"> 
       Unable to login. Check your username and password.

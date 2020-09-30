@@ -1,6 +1,6 @@
-package tacos.data;
+package cars.data;
 import org.springframework.data.repository.CrudRepository;
-import tacos.User;
+import cars.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
