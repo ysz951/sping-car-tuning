@@ -10,18 +10,18 @@ import cars.Gear;
 import cars.data.GearRepository;
 
 @Component
-public class IngredientByIdConverter implements Converter<String, Gear> {
+public class GearByIdConverter implements Converter<String, Gear> {
 
-  private GearRepository ingredientRepo;
+  private GearRepository gearRepo;
 
   @Autowired
-  public IngredientByIdConverter(GearRepository ingredientRepo) {
-    this.ingredientRepo = ingredientRepo;
+  public GearByIdConverter(GearRepository ingredientRepo) {
+    this.gearRepo = ingredientRepo;
   }
   
   @Override
   public Gear convert(String id) {
-    Optional<Gear> optionalIngredient = ingredientRepo.findById(id);
+    Optional<Gear> optionalIngredient = gearRepo.findById(id);
 	return optionalIngredient.isPresent() ?
 		   optionalIngredient.get() : null;
   }
