@@ -1,0 +1,35 @@
+div.ingredient-group:nth-child(odd) {
+	float: left;
+	padding-right: 20px;
+}
+
+.main-img{
+    max-width: 400px;
+}
+
+
+div.gear-group:nth-child(even) {
+    float: left;
+	padding-right: 0;
+}
+
+div.gear-group {
+	width: 50%;
+}
+
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+span.validationError {
+	color: red;
+}

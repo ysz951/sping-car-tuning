@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Tuning</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+  </head>
+  
+  <body>
+    <h1>Design your car!</h1>
+    <h2>Feelin' hungry, <span th:text="${user.fullname}">NAME</span>?</h2>
+    <img  class="main-img" th:src="@{/images/CarTuning.jpg}"/>
+    
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+      <input type="submit" value="Logout"/>
+    </form>
+        
+    <form th:method="POST" th:object="${design}" th:action="@{/design}" id="carForm">
+
+    <span class="validationError"
+          th:if="${#fields.hasErrors('gears')}"
+          th:errors="*{gears}">Gear Error</span>
+
+      <div class="grid">
+        <div class="gear-group" id="audio">
+          <h3>Designate your audio:</h3>
+          <div th:each="gear : ${audio}">
+            <input name="gears" type="checkbox" th:value="${gear.id}" />
+            <span th:text="${gear.name}">GEAR</span><br/>
+          </div>
+        </div>
+
+        <div class="gear-group" id="interior">
+          <h3>Pick your interior:</h3>
+          <div th:each="gear : ${interior}">
+            <input name="gears" type="checkbox" th:value="${gear.id}" />
+            <span th:text="${gear.name}">GEAR</span><br/>
+          </div>
+        </div>
+
+        <div class="gear-group" id="engine">
+          <h3>Choose your engine:</h3>
+          <div th:each="gear : ${engine}">
+            <input name="gears" type="checkbox" th:value="${gear.id}" />
+            <span th:text="${gear.name}">GEAR</span><br/>
+          </div>
+        </div>
+
+        <div class="gear-group" id="suspension">
+          <h3>Determine your suspension:</h3>
+          <div th:each="gear : ${suspension}">
+            <input name="gears" type="checkbox" th:value="${gear.id}" />
+            <span th:text="${gear.name}">GEAR</span><br/>
+          </div>
+        </div>
+
+        <div class="gear-group" id="tires">
+          <h3>Select your tires:</h3>
+          <div th:each="gear : ${tires}">
+            <input name="gears" type="checkbox" th:value="${gear.id}" />
+            <span th:text="${gear.name}">GEAR</span><br/>
+          </div>
+        </div>
+      </div>
+
+      <div>
+
+
+        <h3>Name your car creation:</h3>
+        <input type="text" th:field="*{name}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span>
+        <br/>
+
+        <button>Submit your car</button>
+      </div>
+    </form>
+  </body>
+</html>
