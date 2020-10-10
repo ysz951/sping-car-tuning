@@ -3,12 +3,16 @@ div.ingredient-group:nth-child(odd) {
 	padding-right: 20px;
 }
 
-div.ingredient-group:nth-child(even) {
+.main-img{
+    max-width: 400px;
+}
+
+div.gear-group:nth-child(even) {
     float: left;
 	padding-right: 0;
 }
 
-div.ingredient-group {
+div.gear-group {
 	width: 50%;
 }
 

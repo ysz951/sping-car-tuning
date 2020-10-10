@@ -15,10 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import tacos.data.TacoRepository;
+import tacos.data.CarRepository;
 import tacos.data.UserRepository;
 import tacos.web.OrderProps;
-import tacos.data.IngredientRepository;
+import tacos.data.GearRepository;
 import tacos.data.OrderRepository;
 
 @RunWith(SpringRunner.class)
@@ -33,10 +33,10 @@ public class HomeControllerTest {
   //       isn't important. They just need to exist so autowiring can take place.
   
   @MockBean
-  private IngredientRepository ingredientRepository;
+  private GearRepository gearRepository;
 
   @MockBean
-  private TacoRepository designRepository;
+  private CarRepository designRepository;
 
   @MockBean
   private OrderRepository orderRepository;

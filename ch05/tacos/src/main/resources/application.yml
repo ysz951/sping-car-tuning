@@ -6,7 +6,7 @@
 
 taco:
   orders:
-    pageSize: 10
+    pageSize: 5
 
 
   discount:
@@ -26,3 +26,5 @@ logging:
   level:
     tacos: WARN
     
+server:
+  port : 8081

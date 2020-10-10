@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Taco {
+public class Car {
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,9 +27,9 @@ public class Taco {
   
   private Date createdAt;
 
-  @ManyToMany(targetEntity=Ingredient.class)
+  @ManyToMany(targetEntity= Gear.class)
   @Size(min=1, message="You must choose at least 1 ingredient")
-  private List<Ingredient> ingredients;
+  private List<Gear> gears;
 
   @PrePersist
   void createdAt() {

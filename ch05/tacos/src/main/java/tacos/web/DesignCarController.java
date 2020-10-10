@@ -17,30 +17,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import tacos.Ingredient;
-import tacos.Ingredient.Type;
+import tacos.Car;
+import tacos.Gear;
+import tacos.Gear.Type;
 import tacos.Order;
-import tacos.Taco;
 import tacos.User;
-import tacos.data.IngredientRepository;
-import tacos.data.TacoRepository;
+import tacos.data.GearRepository;
+import tacos.data.CarRepository;
 import tacos.data.UserRepository;
 
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
-public class DesignTacoController {
+public class DesignCarController {
   
-  private final IngredientRepository ingredientRepo;
+  private final GearRepository ingredientRepo;
   
-  private TacoRepository tacoRepo;
+  private CarRepository tacoRepo;
 
   private UserRepository userRepo;
 
   @Autowired
-  public DesignTacoController(
-        IngredientRepository ingredientRepo, 
-        TacoRepository tacoRepo,
+  public DesignCarController(
+        GearRepository ingredientRepo,
+        CarRepository tacoRepo,
         UserRepository userRepo) {
     this.ingredientRepo = ingredientRepo;
     this.tacoRepo = tacoRepo;
@@ -53,19 +53,19 @@ public class DesignTacoController {
   }
   
   @ModelAttribute(name = "design")
-  public Taco design() {
-    return new Taco();
+  public Car design() {
+    return new Car();
   }
   
   @GetMapping
   public String showDesignForm(Model model, Principal principal) {
-    List<Ingredient> ingredients = new ArrayList<>();
-    ingredientRepo.findAll().forEach(i -> ingredients.add(i));
+    List<Gear> gears = new ArrayList<>();
+    ingredientRepo.findAll().forEach(i -> gears.add(i));
     
-    Type[] types = Ingredient.Type.values();
+    Type[] types = Gear.Type.values();
     for (Type type : types) {
       model.addAttribute(type.toString().toLowerCase(), 
-          filterByType(ingredients, type));      
+          filterByType(gears, type));
     }
     
     String username = principal.getName();
@@ -77,22 +77,22 @@ public class DesignTacoController {
 
   @PostMapping
   public String processDesign(
-      @Valid Taco taco, Errors errors, 
-      @ModelAttribute Order order) {
+          @Valid Car car, Errors errors,
+          @ModelAttribute Order order) {
     
     if (errors.hasErrors()) {
       return "design";
     }
 
-    Taco saved = tacoRepo.save(taco);
+    Car saved = tacoRepo.save(car);
     order.addDesign(saved);
 
     return "redirect:/orders/current";
   }
 
-  private List<Ingredient> filterByType(
-      List<Ingredient> ingredients, Type type) {
-    return ingredients
+  private List<Gear> filterByType(
+          List<Gear> gears, Type type) {
+    return gears
               .stream()
               .filter(x -> x.getType().equals(type))
               .collect(Collectors.toList());

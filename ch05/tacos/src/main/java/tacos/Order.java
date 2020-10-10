@@ -61,11 +61,11 @@ public class Order implements Serializable {
   @Digits(integer=3, fraction=0, message="Invalid CVV")
   private String ccCVV;
 
-  @ManyToMany(targetEntity=Taco.class)
-  private List<Taco> tacos = new ArrayList<>();
+  @ManyToMany(targetEntity= Car.class)
+  private List<Car> cars = new ArrayList<>();
   
-  public void addDesign(Taco design) {
-    this.tacos.add(design);
+  public void addDesign(Car design) {
+    this.cars.add(design);
   }
   
   @PrePersist
