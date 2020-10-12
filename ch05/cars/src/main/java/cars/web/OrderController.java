@@ -59,7 +59,7 @@ public class OrderController {
     if (order.getDeliveryZip() == null) {
       order.setDeliveryZip(user.getZip());
     }
-    logger.warn("order added!");
+    logger.warn("new car added to order!");
     return "orderForm";
   }
 

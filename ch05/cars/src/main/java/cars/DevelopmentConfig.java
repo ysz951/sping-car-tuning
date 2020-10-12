@@ -10,7 +10,7 @@ import cars.Gear.Type;
 import cars.data.GearRepository;
 import cars.data.UserRepository;
 
-@Profile("!prod")
+@Profile("!dev")
 @Configuration
 public class DevelopmentConfig {
 
