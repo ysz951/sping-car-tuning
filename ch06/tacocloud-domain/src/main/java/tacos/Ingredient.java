@@ -21,6 +21,7 @@ public class Ingredient {
   
   public static enum Type {
     WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+//    Audio, Interior, Engine, Suspension, Tires
   }
 
 }
