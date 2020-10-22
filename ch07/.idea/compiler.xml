@@ -25,7 +25,7 @@
       <module name="tacocloud-domain" target="12" />
       <module name="tacocloud-restclient" target="12" />
       <module name="tacocloud-security" target="12" />
-      <module name="tacocloud-ui" target="1.8" />
+      <module name="tacocloud-ui" target="12" />
       <module name="tacocloud-web" target="12" />
     </bytecodeTargetLevel>
   </component>
