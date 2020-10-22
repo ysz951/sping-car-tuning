@@ -23,16 +23,16 @@ public class DevelopmentConfig {
     return new CommandLineRunner() {
       @Override
       public void run(String... args) throws Exception {
-        Ingredient flourTortilla = new Ingredient("FLTO", "Flour Tortilla", Type.WRAP);
-        Ingredient cornTortilla = new Ingredient("COTO", "Corn Tortilla", Type.WRAP);
-        Ingredient groundBeef = new Ingredient("GRBF", "Ground Beef", Type.PROTEIN);
-        Ingredient carnitas = new Ingredient("CARN", "Carnitas", Type.PROTEIN);
-        Ingredient tomatoes = new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES);
-        Ingredient lettuce = new Ingredient("LETC", "Lettuce", Type.VEGGIES);
-        Ingredient cheddar = new Ingredient("CHED", "Cheddar", Type.CHEESE);
-        Ingredient jack = new Ingredient("JACK", "Monterrey Jack", Type.CHEESE);
-        Ingredient salsa = new Ingredient("SLSA", "Salsa", Type.SAUCE);
-        Ingredient sourCream = new Ingredient("SRCR", "Sour Cream", Type.SAUCE);
+        Ingredient flourTortilla = new Ingredient("FLTO", "Subwoofers", Type.WRAP);
+        Ingredient cornTortilla = new Ingredient("COTO", "Amplifiers", Type.WRAP);
+        Ingredient groundBeef = new Ingredient("GRBF", "Seat harnesses", Type.PROTEIN);
+        Ingredient carnitas = new Ingredient("CARN", "Fire extinguishers", Type.PROTEIN);
+        Ingredient tomatoes = new Ingredient("TMTO", "Spark plugs", Type.VEGGIES);
+        Ingredient lettuce = new Ingredient("LETC", "Mass air flow", Type.VEGGIES);
+        Ingredient cheddar = new Ingredient("CHED", "Springs", Type.CHEESE);
+        Ingredient jack = new Ingredient("JACK", "Shock absorbers", Type.CHEESE);
+        Ingredient salsa = new Ingredient("SLSA", "Rolling resistance", Type.SAUCE);
+        Ingredient sourCream = new Ingredient("SRCR", "Handling", Type.SAUCE);
         repo.save(flourTortilla);
         repo.save(cornTortilla);
         repo.save(groundBeef);

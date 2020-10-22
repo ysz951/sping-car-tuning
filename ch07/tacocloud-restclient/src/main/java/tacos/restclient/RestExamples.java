@@ -35,7 +35,8 @@ public class RestExamples {
     return args -> {
       log.info("----------------------- GET -------------------------");
       log.info("GETTING INGREDIENT BY IDE");
-      log.info("Ingredient:  " + tacoCloudClient.getIngredientById("CHED"));
+//      tacoCloudClient.getIngredientById("LETC");
+      log.info("Ingredient:  " + tacoCloudClient.getIngredientById("LETC"));
       log.info("GETTING ALL INGREDIENTS");
       List<Ingredient> ingredients = tacoCloudClient.getAllIngredients();
       log.info("All ingredients:");
