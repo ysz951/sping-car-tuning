@@ -32,7 +32,7 @@ import tacos.data.CarRepository;
 //tag::injectingIngredientRepository[]
 public class DesignCarController {
 
-  private final GearRepository ingredientRepo;
+  private final GearRepository gearRepo;
 
   //end::injectingIngredientRepository[]
   private CarRepository tacoRepo;
@@ -51,7 +51,7 @@ public class DesignCarController {
   public DesignCarController(
         GearRepository ingredientRepo,
         CarRepository tacoRepo) {
-    this.ingredientRepo = ingredientRepo;
+    this.gearRepo = ingredientRepo;
     this.tacoRepo = tacoRepo;
   }
 
@@ -72,7 +72,7 @@ public class DesignCarController {
   @GetMapping
   public String showDesignForm(Model model) {
     List<Gear> gears = new ArrayList<>();
-    ingredientRepo.findAll().forEach(i -> gears.add(i));
+    gearRepo.findAll().forEach(i -> gears.add(i));
 
     Type[] types = Gear.Type.values();
     for (Type type : types) {

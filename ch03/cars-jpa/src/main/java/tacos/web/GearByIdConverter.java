@@ -12,18 +12,18 @@ import tacos.data.GearRepository;
 @Component
 public class GearByIdConverter implements Converter<String, Gear> {
 
-  private GearRepository ingredientRepo;
+  private GearRepository gearRepo;
 
   @Autowired
   public GearByIdConverter(GearRepository ingredientRepo) {
-    this.ingredientRepo = ingredientRepo;
+    this.gearRepo = ingredientRepo;
   }
   
   @Override
   public Gear convert(String id) {
-    Optional<Gear> optionalIngredient = ingredientRepo.findById(id);
-	return optionalIngredient.isPresent() ?
-		   optionalIngredient.get() : null;
+    Optional<Gear> optionalGear = gearRepo.findById(id);
+	return optionalGear.isPresent() ?
+		   optionalGear.get() : null;
   }
 
 }

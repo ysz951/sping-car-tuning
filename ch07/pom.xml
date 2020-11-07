@@ -18,7 +18,8 @@
     <properties>
 <!--      <maven.compiler.source>1.8</maven.compiler.source>-->
 <!--      <maven.compiler.target>1.8</maven.compiler.target>-->
-      <tacocloud.version>${project.version}</tacocloud.version>
+        <tacocloud.version>${project.version}</tacocloud.version>
+        <java.version>14</java.version>
     </properties>
     <repositories>
         <repository>
