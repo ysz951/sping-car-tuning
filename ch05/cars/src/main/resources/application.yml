@@ -12,31 +12,17 @@ taco:
   discount:
     codes:
       abcdef: 10
-    
+
 ---
 spring:
   profiles: prod
-  
+
   datasource:
     url: jdbc:mysql://localhost/tacocloud
     username: tacouser
     password: tacopassword
-    
-#logging:
-#  level:
-#    root: WARN
-#  pattern:
-#    concole: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
-#    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
-#  file: C:/testlog/api.log
-#logging:
-#  file: TacoCloud.log
-#  level:
-#    root: WARN
-#    org:
-#      springframework:
-#        security: DEBUG
 
+logging:
+  level:
+    tacos: WARN
 
-server:
-  port : 8081

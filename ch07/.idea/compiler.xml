@@ -18,7 +18,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="taco-cloud" target="12" />
+      <module name="taco-cloud" target="14" />
       <module name="taco-cloud-parent" target="14" />
       <module name="tacocloud-api" target="14" />
       <module name="tacocloud-data" target="14" />
