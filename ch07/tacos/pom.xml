@@ -14,6 +14,7 @@
 		<groupId>sia</groupId>
 		<artifactId>taco-cloud-parent</artifactId>
 		<version>0.0.7-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<properties>
