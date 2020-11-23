@@ -1,6 +1,7 @@
 //tag::securityConfigOuterClass[]
 package cars.security;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 //end::securityConfigOuterClass[]
 //tag::baseBonesImports[]
@@ -26,13 +27,14 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-  
+
 //end::securityConfigOuterClass[]
 
 //tag::customUserDetailsService[]
   @Autowired
+  @Qualifier("userDetailsService")
   private UserDetailsService userDetailsService;
-  
+
 //end::customUserDetailsService[]
 
   //tag::configureHttpSecurity[]
@@ -46,18 +48,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           .access("hasRole('ROLE_USER')")
         .antMatchers("/", "/**").access("permitAll")
         //end::authorizeRequests[]
-        
+
       .and()
         .formLogin()
           .loginPage("/login")
         //end::customLoginPage[]
-          
+
       // tag::enableLogout[]
       .and()
         .logout()
           .logoutSuccessUrl("/")
       // end::enableLogout[]
-          
+
       // Make H2-Console non-secured; for debug purposes
       // tag::csrfIgnore[]
       .and()
@@ -67,12 +69,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
       // Allow pages to be loaded in frames from the same origin; needed for H2-Console
       // tag::frameOptionsSameOrigin[]
-      .and()  
+      .and()
         .headers()
           .frameOptions()
             .sameOrigin()
       // end::frameOptionsSameOrigin[]
-            
+
       //tag::authorizeRequests[]
       //tag::customLoginPage[]
       ;
@@ -89,10 +91,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     auth
       .userDetailsService(userDetailsService);
-    
+
   }
   //end::customUserDetailsService[]
-  
+
    */
 
   //tag::customUserDetailsService_withPasswordEncoder[]
@@ -100,8 +102,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   public PasswordEncoder encoder() {
     return new StandardPasswordEncoder("53cr3t");
   }
-  
-  
+
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth)
       throws Exception {
@@ -109,10 +111,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     auth
       .userDetailsService(userDetailsService)
       .passwordEncoder(encoder());
-    
+
   }
   //end::customUserDetailsService_withPasswordEncoder[]
-  
+
 //
 // IN MEMORY AUTHENTICATION EXAMPLE
 //
@@ -121,7 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(AuthenticationManagerBuilder auth)
       throws Exception {
-    
+
     auth
       .inMemoryAuthentication()
         .withUser("buzz")
@@ -131,7 +133,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .withUser("woody")
           .password("bullseye")
           .authorities("ROLE_USER");
-    
+
   }
 //end::configureAuthentication_inMemory[]
 */
@@ -143,15 +145,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //tag::configureAuthentication_jdbc[]
   @Autowired
   DataSource dataSource;
-  
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth)
       throws Exception {
-    
+
     auth
       .jdbcAuthentication()
         .dataSource(dataSource);
-    
+
   }
 //end::configureAuthentication_jdbc[]
 */
@@ -161,7 +163,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(AuthenticationManagerBuilder auth)
       throws Exception {
-    
+
     auth
       .jdbcAuthentication()
         .dataSource(dataSource)
@@ -171,7 +173,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authoritiesByUsernameQuery(
             "select username, authority from UserAuthorities " +
             "where username=?");
-    
+
   }
 //end::configureAuthentication_jdbc_withQueries[]
 */
@@ -181,7 +183,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(AuthenticationManagerBuilder auth)
       throws Exception {
-    
+
     auth
       .jdbcAuthentication()
         .dataSource(dataSource)
@@ -192,12 +194,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "select username, authority from UserAuthorities " +
             "where username=?")
         .passwordEncoder(new StandardPasswordEncoder("53cr3t");
-    
+
   }
 //end::configureAuthentication_jdbc_passwordEncoder[]
 */
-  
-  
+
+
 //
 // LDAP Authentication example
 //
@@ -213,7 +215,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 //end::configureAuthentication_ldap[]
 */
-  
+
 //tag::securityConfigOuterClass[]
 
 }
